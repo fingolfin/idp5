@@ -1,0 +1,71 @@
+  
+  
+                                     [1X Idp5 [101X
+  
+  
+              [1X Identification of the groups of order dividing p^5 [101X
+  
+  
+                                     1.0.0
+  
+  
+                                8 November 2026
+  
+  
+                                 Heiko Dietrich
+  
+                                  Bettina Eick
+  
+                                 Henrik Schanze
+  
+  
+  
+  Heiko Dietrich
+      Email:    [7Xmailto:heiko.dietrich@monash.edu[107X
+      Homepage: [7Xhttp://users.monash.edu.au/~heikod/[107X
+  Bettina Eick
+      Email:    [7Xmailto:beick@tu-bs.de[107X
+      Homepage: [7Xhttp://www.iaa.tu-bs.de/beick[107X
+  Henrik Schanze
+      Email:    [7Xmailto:henrik.schanze@tu-braunschweig.de[107X
+      Homepage: [7Xhttps://www.iaa.tu-bs.de/henschan[107X
+  
+  -------------------------------------------------------
+  [1XAbstract[101X
+  [33X[0;0YThe  [5XIdp5[105X package identifies the groups of order dividing [22Xp^5[122X, for any prime
+  [22Xp[122X,  with  the groups in the SmallGroups library, and constructs isomorphisms
+  onto the library groups.[133X
+  
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 2026 by Heiko Dietrich, Bettina Eick, and Henrik Schanze.[133X
+  
+  [33X[0;0YThe  [5XIdp5[105X package is free software; you can redistribute it and/or modify it
+  under  the  terms of the GNU General Public License as published by the Free
+  Software  Foundation;  either  version 2 of the License, or (at your option)
+  any later version.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (Idp5)[101X
+  
+  1 [33X[0;0YIntroduction[133X
+    1.1 [33X[0;0YOverview[133X
+    1.2 [33X[0;0YAn example[133X
+  2 [33X[0;0YFunctions[133X
+    2.1 [33X[0;0YIdentification[133X
+    2.2 [33X[0;0YIsomorphisms onto the library groups[133X
+      2.2-1 IsomorphismSmallGroup
+    2.3 [33X[0;0YTypes of the groups of order p^5[133X
+      2.3-1 TypeFromIdSmallGroup_p5
+      2.3-2 IdSmallGroupFromType_p5
+    2.4 [33X[0;0YThe info class[133X
+      2.4-1 InfoIdp5
+    2.5 [33X[0;0YTesting the package[133X
+      2.5-1 TestSmallGroupID_p5
+  
+  
+  [32X

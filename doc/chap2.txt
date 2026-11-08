@@ -1,0 +1,199 @@
+  
+  [1X2 [33X[0;0YFunctions[133X[101X
+  
+  
+  [1X2.1 [33X[0;0YIdentification[133X[101X
+  
+  [33X[0;0YThe  package  installs  a  method  for the attribute [2XIdSmallGroup[102X ([14Xsmallgrp:
+  IdSmallGroup[114X)  (a synonym of [2XIdGroup[102X ([14Xsmallgrp: IdGroup[114X)) of the SmallGroups
+  library.  For a group [22XG[122X of order [22Xp^n[122X with [22Xp > 5[122X prime and [22Xn ≤ 5[122X, this method
+  returns the pair [10X[p^n,i][110X such that [22XG[122X is isomorphic to [10XSmallGroup(p^n,i)[110X. For
+  all  other  groups,  in particular for the groups of order [22X2^n[122X, [22X3^n[122X and [22X5^n[122X,
+  the methods of the SmallGroups library are used.[133X
+  
+  [33X[0;0YThe  input group can be given in any representation in which [5XGAP[105X can compute
+  with  it, for example as a pc group, a permutation group, or a matrix group.
+  If an isomorphism onto the library group is found during the identification,
+  which is the case for the groups of order dividing [22Xp^4[122X, then it is stored as
+  the value of [2XIsomorphismSmallGroup[102X ([14X2.2-1[114X).[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := Group(GeneratorsOfGroup(SmallGroup(11^5, 40)));;[127X[104X
+    [4X[25Xgap>[125X [27XIdGroup(G);[127X[104X
+    [4X[28X[ 161051, 40 ][128X[104X
+    [4X[25Xgap>[125X [27XG := Image(RegularActionHomomorphism(SmallGroup(13^4, 9)));;[127X[104X
+    [4X[25Xgap>[125X [27XIdSmallGroup(G);[127X[104X
+    [4X[28X[ 28561, 9 ][128X[104X
+    [4X[25Xgap>[125X [27XHasIsomorphismSmallGroup(G);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIdGroupsAvailable(17^5);  # the SmallGroups library has no ID function[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XNumberSmallGroups(17^5);[127X[104X
+    [4X[28X101[128X[104X
+    [4X[25Xgap>[125X [27XForAll([1..101], i -> IdGroup(Group(GeneratorsOfGroup(SmallGroup(17^5,i))))[127X[104X
+    [4X[25X>[125X [27X                         = [17^5, i]);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.2 [33X[0;0YIsomorphisms onto the library groups[133X[101X
+  
+  [1X2.2-1 IsomorphismSmallGroup[101X
+  
+  [33X[1;0Y[29X[2XIsomorphismSmallGroup[102X( [3XG[103X ) [32X attribute[133X
+  [6XReturns:[106X  [33X[0;10Yan isomorphism from [3XG[103X onto [10XSmallGroup(IdSmallGroup([3XG[103X[10X))[110X, or [9Xfail[109X[133X
+  
+  [33X[0;0YFor  a  group  [3XG[103X  of  order [22Xp^n[122X with [22Xp[122X prime and [22Xn ≤ 5[122X, this attribute is an
+  isomorphism from [3XG[103X onto the library group [10XSmallGroup(IdSmallGroup([3XG[103X[10X))[110X.[133X
+  
+  [30X    [33X[0;6YIf  [22Xp  >  5[122X  and [22Xn ≤ 4[122X, then the isomorphism is computed together with
+        [10XIdSmallGroup([3XG[103X[10X)[110X.[133X
+  
+  [30X    [33X[0;6YIf   [22Xp   ∈   {2,3}[122X,  or  if  [22Xp=5[122X  and  [22Xn  ≤  4[122X,  then  [5XGAP[105X's  function
+        [10XIsomorphismGroups[110X is used.[133X
+  
+  [30X    [33X[0;6YIf  [22Xn=5[122X  and  [22Xp  ≥  5[122X,  then the isomorphism is constructed by lifting
+        isomorphisms  between  quotients of [3XG[103X and of the library group, partly
+        with  a randomised search. The map that is returned is always verified
+        to  be an isomorphism. In principle the search can fail, and then [9Xfail[109X
+        is  returned  and a message is printed at level 1 of [2XInfoIdp5[102X ([14X2.4-1[114X);
+        this has not been observed in practice. Since [2XIsomorphismSmallGroup[102X is
+        an   attribute,   the  value  [9Xfail[109X  is  stored;  to  try  again,  call
+        [2XIsomorphismSmallGroup[102X  for  a  new  copy  of  the  group,  for example
+        [10XGroup(GeneratorsOfGroup([3XG[103X[10X))[110X.[133X
+  
+  [33X[0;0YEach call of [10XSmallGroup[110X creates a new group, so the range of the isomorphism
+  is  not equal to another group constructed with [10XSmallGroup(IdSmallGroup([3XG[103X[10X))[110X;
+  but the two groups are given by the same pc presentation (see the example in
+  Chapter [14X1[114X).[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := Image(IsomorphismPermGroup(SmallGroup(7^5, 30)));;[127X[104X
+    [4X[25Xgap>[125X [27Xiso := IsomorphismSmallGroup(G);;[127X[104X
+    [4X[25Xgap>[125X [27XIsBijective(iso) and Source(iso) = G;[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIdSmallGroup(Range(iso));[127X[104X
+    [4X[28X[ 16807, 30 ][128X[104X
+    [4X[25Xgap>[125X [27XG := DirectProduct(CyclicGroup(IsPermGroup, 4), DihedralGroup(IsPermGroup, 8));;[127X[104X
+    [4X[25Xgap>[125X [27Xiso := IsomorphismSmallGroup(G);;[127X[104X
+    [4X[25Xgap>[125X [27XIdSmallGroup(Range(iso)) = IdSmallGroup(G);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.3 [33X[0;0YTypes of the groups of order p^5[133X[101X
+  
+  [33X[0;0YFor primes [22Xp ≥ 7[122X, the SmallGroups library constructs the groups of order [22Xp^5[122X
+  from  70  parametrised  pc presentations; the number [22Xt ∈ {1, ..., 70}[122X of the
+  presentation of a group is its [13Xtype[113X. The groups of a type form a consecutive
+  range  of  IDs.  Most types consist of a single group; the types 11, 12, 29,
+  32,  33, 48 and 50 have a further parameter [22Xk[122X, and the pair [22X[t,k][122X determines
+  a  group  of type [22Xt[122X. The following two functions convert between the IDs and
+  the types.[133X
+  
+  [1X2.3-1 TypeFromIdSmallGroup_p5[101X
+  
+  [33X[1;0Y[29X[2XTypeFromIdSmallGroup_p5[102X( [3Xp[103X, [3Xi[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya list [10X[t][110X or [10X[t,k][110X[133X
+  
+  [33X[0;0YFor  a  prime  [3Xp[103X  [22X>  5[122X and an integer [3Xi[103X in [10X[1..NumberSmallGroups([3Xp[103X[10X^5)][110X, this
+  function  returns  the type of [10XSmallGroup([3Xp[103X[10X^5,[3Xi[103X[10X)[110X: the list [10X[t][110X if the type [22Xt[122X
+  has no further parameter, and the list [10X[t,k][110X otherwise.[133X
+  
+  [1X2.3-2 IdSmallGroupFromType_p5[101X
+  
+  [33X[1;0Y[29X[2XIdSmallGroupFromType_p5[102X( [3Xp[103X, [3Xtype[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Yan integer or a list of integers[133X
+  
+  [33X[0;0YThis  is  the inverse of [2XTypeFromIdSmallGroup_p5[102X ([14X2.3-1[114X). For a prime [3Xp[103X [22X> 5[122X,
+  the argument [3Xtype[103X can be an integer [22Xt[122X in [10X[1..70][110X or a list [10X[t][110X; then the IDs
+  [22Xi[122X  of  the groups [10XSmallGroup([3Xp[103X[10X^5,i)[110X of type [22Xt[122X are returned, as an integer if
+  there  is  only  one  such  group and as a list otherwise. If [3Xtype[103X is a pair
+  [10X[t,k][110X, then the ID of the [22Xk[122X-th group of type [22Xt[122X is returned.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XTypeFromIdSmallGroup_p5(7, 34);[127X[104X
+    [4X[28X[ 29, 2 ][128X[104X
+    [4X[25Xgap>[125X [27XIdSmallGroupFromType_p5(7, [29, 2]);[127X[104X
+    [4X[28X34[128X[104X
+    [4X[25Xgap>[125X [27XIdSmallGroupFromType_p5(7, 29);[127X[104X
+    [4X[28X[ 33, 34, 35 ][128X[104X
+    [4X[25Xgap>[125X [27XTypeFromIdSmallGroup_p5(7, 65);[127X[104X
+    [4X[28X[ 52 ][128X[104X
+    [4X[25Xgap>[125X [27XIdSmallGroupFromType_p5(7, 52);[127X[104X
+    [4X[28X65[128X[104X
+    [4X[25Xgap>[125X [27XForAll([1..NumberSmallGroups(7^5)],[127X[104X
+    [4X[25X>[125X [27X          i -> IdSmallGroupFromType_p5(7, TypeFromIdSmallGroup_p5(7, i)) = i);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.4 [33X[0;0YThe info class[133X[101X
+  
+  [1X2.4-1 InfoIdp5[101X
+  
+  [33X[1;0Y[29X[2XInfoIdp5[102X [32X info class[133X
+  
+  [33X[0;0YThe  info  class  of  the  package.  At  level 1 (the default), a message is
+  printed  if the randomised search of [2XIsomorphismSmallGroup[102X ([14X2.2-1[114X) fails. At
+  levels  2  and  3,  the construction of isomorphisms for groups of order [22Xp^5[122X
+  prints which of its cases has been used, and some statistics.[133X
+  
+  
+  [1X2.5 [33X[0;0YTesting the package[133X[101X
+  
+  [33X[0;0YThe test suite of the package is run with [10XTestPackage("idp5")[110X. It identifies
+  random  copies  of  all  groups  of  order [22Xp^n[122X, [22Xn ≤ 5[122X, for several primes [22Xp[122X,
+  constructs  isomorphisms  onto  the library groups, and runs the examples of
+  this  manual; this takes about a minute. The following function runs similar
+  tests for given primes and prints runtimes.[133X
+  
+  [1X2.5-1 TestSmallGroupID_p5[101X
+  
+  [33X[1;0Y[29X[2XTestSmallGroupID_p5[102X( [3Xlps[103X, [3Xnr[103X, [3XtestIso[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya record with the runtimes and the failures[133X
+  
+  [33X[0;0YFor  every  prime  [22Xp[122X  in  the  list  [3Xlps[103X,  every  [22Xe[122X in [10X[1..5][110X and every [22Xi[122X in
+  [10X[1..NumberSmallGroups(p^e)][110X,  this  function constructs [3Xnr[103X random isomorphic
+  copies  of  [10XSmallGroup(p^e,i)[110X (pc groups with respect to a random pcgs), and
+  checks  that  [2XIdSmallGroup[102X  ([14Xsmallgrp:  IdSmallGroup[114X)  returns  [10X[p^e,i][110X.  If
+  [3XtestIso[103X  is  [9Xtrue[109X,  then  it  also checks that [2XIsomorphismSmallGroup[102X ([14X2.2-1[114X)
+  returns  an  isomorphism onto the library group. For each copy, the runtimes
+  in  milliseconds  are  printed.  For  the  groups  of order [22Xp^5[122X, the average
+  runtimes and the ten largest runtimes are printed at the end, as well as the
+  numbers  of  wrong IDs, of failed isomorphism searches, and of returned maps
+  that are not isomorphisms. A wrong ID, and a map that is not an isomorphism,
+  also cause an error.[133X
+  
+  [33X[0;0YThe  returned  record has the components [10Xid[110X and [10Xiso[110X (lists of triples [10X[time,
+  p,  i][110X for the groups [10XSmallGroup(p^5,i)[110X), [10Xwrong[110X, [10Xfailed[110X and [10Xnotiso[110X (lists of
+  the groups for which the ID was wrong, the isomorphism search failed, or the
+  returned map was not an isomorphism). The runtimes depend on the machine.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xt := TestSmallGroupID_p5([37, 61, 101], 1, true);;[127X[104X
+    [4X[28X------ start p = 37[128X[104X
+    [4X[28XID [37^1,1] copy 1:   id 2 ms,  iso 0 ms[128X[104X
+    [4X[28XID [37^2,1] copy 1:   id 1 ms,  iso 0 ms[128X[104X
+    [4X[28XID [37^2,2] copy 1:   id 1 ms,  iso 0 ms[128X[104X
+    [4X[28X...[128X[104X
+    [4X[28XID [101^5,267] copy 1:   id 1 ms,  iso 11 ms[128X[104X
+    [4X[28XID [101^5,268] copy 1:   id 3 ms,  iso 31 ms[128X[104X
+    [4X[28XID [101^5,269] copy 1:   id 1 ms,  iso 1 ms[128X[104X
+    [4X[28X[128X[104X
+    [4X[28X------ summary[128X[104X
+    [4X[28Xaverage time for ID: 51 ms   (607 tests)[128X[104X
+    [4X[28Xten largest runtimes for ID:[128X[104X
+    [4X[28X   273 ms   for SmallGroup(101^5,257)[128X[104X
+    [4X[28X   235 ms   for SmallGroup(101^5,256)[128X[104X
+    [4X[28X   ...[128X[104X
+    [4X[28Xaverage time for iso: 71 ms   (607 tests)[128X[104X
+    [4X[28Xten largest runtimes for iso:[128X[104X
+    [4X[28X   3187 ms   for SmallGroup(101^5,125)[128X[104X
+    [4X[28X   1595 ms   for SmallGroup(101^5,119)[128X[104X
+    [4X[28X   ...[128X[104X
+    [4X[28Xwrong IDs: 0[128X[104X
+    [4X[28Xisomorphism search failed: 0[128X[104X
+    [4X[28Xreturned map not an isomorphism: 0[128X[104X
+  [4X[32X[104X
+  

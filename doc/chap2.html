@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (Idp5) - Chapter 2: Functions</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap2"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"></p>
+<p><a id="X86FA580F8055B274" name="X86FA580F8055B274"></a></p>
+<div class="ChapSects"><a href="chap2.html#X86FA580F8055B274">2 <span class="Heading">Functions</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X809B03E67FB9361D">2.1 <span class="Heading">Identification</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X83DF05B57C9C395A">2.2 <span class="Heading">Isomorphisms onto the library groups</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A12144B7C3571EA">2.2-1 IsomorphismSmallGroup</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X864B42B181783A01">2.3 <span class="Heading">Types of the groups of order p^5</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7CFCC27C7839E534">2.3-1 TypeFromIdSmallGroup_p5</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X874DC0B68181C636">2.3-2 IdSmallGroupFromType_p5</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7FE5E9F0802D7E89">2.4 <span class="Heading">The info class</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81BE531A87C76CDA">2.4-1 InfoIdp5</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8565820884661FE8">2.5 <span class="Heading">Testing the package</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X78986A8C8320805D">2.5-1 TestSmallGroupID_p5</a></span>
+</div></div>
+</div>
+
+<h3>2 <span class="Heading">Functions</span></h3>
+
+<p><a id="X809B03E67FB9361D" name="X809B03E67FB9361D"></a></p>
+
+<h4>2.1 <span class="Heading">Identification</span></h4>
+
+<p>The package installs a method for the attribute <code class="func">IdSmallGroup</code> (<a href="/Users/heikod/gap-4.15.1/pkg/smallgrp/doc/chap1.html#X83044B9D7E3BDF35"><span class="RefLink">smallgrp: IdSmallGroup</span></a>) (a synonym of <code class="func">IdGroup</code> (<a href="/Users/heikod/gap-4.15.1/pkg/smallgrp/doc/chap1.html#X83044B9D7E3BDF35"><span class="RefLink">smallgrp: IdGroup</span></a>)) of the SmallGroups library. For a group <span class="SimpleMath">G</span> of order <span class="SimpleMath">p^n</span> with <span class="SimpleMath">p &gt; 5</span> prime and <span class="SimpleMath">n ≤ 5</span>, this method returns the pair <code class="code">[p^n,i]</code> such that <span class="SimpleMath">G</span> is isomorphic to <code class="code">SmallGroup(p^n,i)</code>. For all other groups, in particular for the groups of order <span class="SimpleMath">2^n</span>, <span class="SimpleMath">3^n</span> and <span class="SimpleMath">5^n</span>, the methods of the SmallGroups library are used.</p>
+
+<p>The input group can be given in any representation in which <strong class="pkg">GAP</strong> can compute with it, for example as a pc group, a permutation group, or a matrix group. If an isomorphism onto the library group is found during the identification, which is the case for the groups of order dividing <span class="SimpleMath">p^4</span>, then it is stored as the value of <code class="func">IsomorphismSmallGroup</code> (<a href="chap2.html#X7A12144B7C3571EA"><span class="RefLink">2.2-1</span></a>).</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := Group(GeneratorsOfGroup(SmallGroup(11^5, 40)));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdGroup(G);</span>
+[ 161051, 40 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := Image(RegularActionHomomorphism(SmallGroup(13^4, 9)));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdSmallGroup(G);</span>
+[ 28561, 9 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">HasIsomorphismSmallGroup(G);</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdGroupsAvailable(17^5);  # the SmallGroups library has no ID function</span>
+false
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NumberSmallGroups(17^5);</span>
+101
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ForAll([1..101], i -&gt; IdGroup(Group(GeneratorsOfGroup(SmallGroup(17^5,i))))</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">                         = [17^5, i]);</span>
+true
+</pre></div>
+
+<p><a id="X83DF05B57C9C395A" name="X83DF05B57C9C395A"></a></p>
+
+<h4>2.2 <span class="Heading">Isomorphisms onto the library groups</span></h4>
+
+<p><a id="X7A12144B7C3571EA" name="X7A12144B7C3571EA"></a></p>
+
+<h5>2.2-1 IsomorphismSmallGroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsomorphismSmallGroup</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>Returns: an isomorphism from <var class="Arg">G</var> onto <code class="code">SmallGroup(IdSmallGroup(<var class="Arg">G</var>))</code>, or <code class="keyw">fail</code></p>
+
+<p>For a group <var class="Arg">G</var> of order <span class="SimpleMath">p^n</span> with <span class="SimpleMath">p</span> prime and <span class="SimpleMath">n ≤ 5</span>, this attribute is an isomorphism from <var class="Arg">G</var> onto the library group <code class="code">SmallGroup(IdSmallGroup(<var class="Arg">G</var>))</code>.</p>
+
+
+<ul>
+<li><p>If <span class="SimpleMath">p &gt; 5</span> and <span class="SimpleMath">n ≤ 4</span>, then the isomorphism is computed together with <code class="code">IdSmallGroup(<var class="Arg">G</var>)</code>.</p>
+
+</li>
+<li><p>If <span class="SimpleMath">p ∈ {2,3}</span>, or if <span class="SimpleMath">p=5</span> and <span class="SimpleMath">n ≤ 4</span>, then <strong class="pkg">GAP</strong>'s function <code class="code">IsomorphismGroups</code> is used.</p>
+
+</li>
+<li><p>If <span class="SimpleMath">n=5</span> and <span class="SimpleMath">p ≥ 5</span>, then the isomorphism is constructed by lifting isomorphisms between quotients of <var class="Arg">G</var> and of the library group, partly with a randomised search. The map that is returned is always verified to be an isomorphism. In principle the search can fail, and then <code class="keyw">fail</code> is returned and a message is printed at level 1 of <code class="func">InfoIdp5</code> (<a href="chap2.html#X81BE531A87C76CDA"><span class="RefLink">2.4-1</span></a>); this has not been observed in practice. Since <code class="func">IsomorphismSmallGroup</code> is an attribute, the value <code class="keyw">fail</code> is stored; to try again, call <code class="func">IsomorphismSmallGroup</code> for a new copy of the group, for example <code class="code">Group(GeneratorsOfGroup(<var class="Arg">G</var>))</code>.</p>
+
+</li>
+</ul>
+<p>Each call of <code class="code">SmallGroup</code> creates a new group, so the range of the isomorphism is not equal to another group constructed with <code class="code">SmallGroup(IdSmallGroup(<var class="Arg">G</var>))</code>; but the two groups are given by the same pc presentation (see the example in Chapter <a href="chap1.html#X7DFB63A97E67C0A1"><span class="RefLink">1</span></a>).</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := Image(IsomorphismPermGroup(SmallGroup(7^5, 30)));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iso := IsomorphismSmallGroup(G);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsBijective(iso) and Source(iso) = G;</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdSmallGroup(Range(iso));</span>
+[ 16807, 30 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := DirectProduct(CyclicGroup(IsPermGroup, 4), DihedralGroup(IsPermGroup, 8));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iso := IsomorphismSmallGroup(G);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdSmallGroup(Range(iso)) = IdSmallGroup(G);</span>
+true
+</pre></div>
+
+<p><a id="X864B42B181783A01" name="X864B42B181783A01"></a></p>
+
+<h4>2.3 <span class="Heading">Types of the groups of order p^5</span></h4>
+
+<p>For primes <span class="SimpleMath">p ≥ 7</span>, the SmallGroups library constructs the groups of order <span class="SimpleMath">p^5</span> from 70 parametrised pc presentations; the number <span class="SimpleMath">t ∈ {1, ..., 70}</span> of the presentation of a group is its <em>type</em>. The groups of a type form a consecutive range of IDs. Most types consist of a single group; the types 11, 12, 29, 32, 33, 48 and 50 have a further parameter <span class="SimpleMath">k</span>, and the pair <span class="SimpleMath">[t,k]</span> determines a group of type <span class="SimpleMath">t</span>. The following two functions convert between the IDs and the types.</p>
+
+<p><a id="X7CFCC27C7839E534" name="X7CFCC27C7839E534"></a></p>
+
+<h5>2.3-1 TypeFromIdSmallGroup_p5</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TypeFromIdSmallGroup_p5</code>( <var class="Arg">p</var>, <var class="Arg">i</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: a list <code class="code">[t]</code> or <code class="code">[t,k]</code></p>
+
+<p>For a prime <var class="Arg">p</var> <span class="SimpleMath">&gt; 5</span> and an integer <var class="Arg">i</var> in <code class="code">[1..NumberSmallGroups(<var class="Arg">p</var>^5)]</code>, this function returns the type of <code class="code">SmallGroup(<var class="Arg">p</var>^5,<var class="Arg">i</var>)</code>: the list <code class="code">[t]</code> if the type <span class="SimpleMath">t</span> has no further parameter, and the list <code class="code">[t,k]</code> otherwise.</p>
+
+<p><a id="X874DC0B68181C636" name="X874DC0B68181C636"></a></p>
+
+<h5>2.3-2 IdSmallGroupFromType_p5</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IdSmallGroupFromType_p5</code>( <var class="Arg">p</var>, <var class="Arg">type</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: an integer or a list of integers</p>
+
+<p>This is the inverse of <code class="func">TypeFromIdSmallGroup_p5</code> (<a href="chap2.html#X7CFCC27C7839E534"><span class="RefLink">2.3-1</span></a>). For a prime <var class="Arg">p</var> <span class="SimpleMath">&gt; 5</span>, the argument <var class="Arg">type</var> can be an integer <span class="SimpleMath">t</span> in <code class="code">[1..70]</code> or a list <code class="code">[t]</code>; then the IDs <span class="SimpleMath">i</span> of the groups <code class="code">SmallGroup(<var class="Arg">p</var>^5,i)</code> of type <span class="SimpleMath">t</span> are returned, as an integer if there is only one such group and as a list otherwise. If <var class="Arg">type</var> is a pair <code class="code">[t,k]</code>, then the ID of the <span class="SimpleMath">k</span>-th group of type <span class="SimpleMath">t</span> is returned.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TypeFromIdSmallGroup_p5(7, 34);</span>
+[ 29, 2 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdSmallGroupFromType_p5(7, [29, 2]);</span>
+34
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdSmallGroupFromType_p5(7, 29);</span>
+[ 33, 34, 35 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TypeFromIdSmallGroup_p5(7, 65);</span>
+[ 52 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdSmallGroupFromType_p5(7, 52);</span>
+65
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ForAll([1..NumberSmallGroups(7^5)],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">          i -&gt; IdSmallGroupFromType_p5(7, TypeFromIdSmallGroup_p5(7, i)) = i);</span>
+true
+</pre></div>
+
+<p><a id="X7FE5E9F0802D7E89" name="X7FE5E9F0802D7E89"></a></p>
+
+<h4>2.4 <span class="Heading">The info class</span></h4>
+
+<p><a id="X81BE531A87C76CDA" name="X81BE531A87C76CDA"></a></p>
+
+<h5>2.4-1 InfoIdp5</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; InfoIdp5</code></td><td class="tdright">(&nbsp;info class&nbsp;)</td></tr></table></div>
+<p>The info class of the package. At level 1 (the default), a message is printed if the randomised search of <code class="func">IsomorphismSmallGroup</code> (<a href="chap2.html#X7A12144B7C3571EA"><span class="RefLink">2.2-1</span></a>) fails. At levels 2 and 3, the construction of isomorphisms for groups of order <span class="SimpleMath">p^5</span> prints which of its cases has been used, and some statistics.</p>
+
+<p><a id="X8565820884661FE8" name="X8565820884661FE8"></a></p>
+
+<h4>2.5 <span class="Heading">Testing the package</span></h4>
+
+<p>The test suite of the package is run with <code class="code">TestPackage("idp5")</code>. It identifies random copies of all groups of order <span class="SimpleMath">p^n</span>, <span class="SimpleMath">n ≤ 5</span>, for several primes <span class="SimpleMath">p</span>, constructs isomorphisms onto the library groups, and runs the examples of this manual; this takes about a minute. The following function runs similar tests for given primes and prints runtimes.</p>
+
+<p><a id="X78986A8C8320805D" name="X78986A8C8320805D"></a></p>
+
+<h5>2.5-1 TestSmallGroupID_p5</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TestSmallGroupID_p5</code>( <var class="Arg">lps</var>, <var class="Arg">nr</var>, <var class="Arg">testIso</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: a record with the runtimes and the failures</p>
+
+<p>For every prime <span class="SimpleMath">p</span> in the list <var class="Arg">lps</var>, every <span class="SimpleMath">e</span> in <code class="code">[1..5]</code> and every <span class="SimpleMath">i</span> in <code class="code">[1..NumberSmallGroups(p^e)]</code>, this function constructs <var class="Arg">nr</var> random isomorphic copies of <code class="code">SmallGroup(p^e,i)</code> (pc groups with respect to a random pcgs), and checks that <code class="func">IdSmallGroup</code> (<a href="/Users/heikod/gap-4.15.1/pkg/smallgrp/doc/chap1.html#X83044B9D7E3BDF35"><span class="RefLink">smallgrp: IdSmallGroup</span></a>) returns <code class="code">[p^e,i]</code>. If <var class="Arg">testIso</var> is <code class="keyw">true</code>, then it also checks that <code class="func">IsomorphismSmallGroup</code> (<a href="chap2.html#X7A12144B7C3571EA"><span class="RefLink">2.2-1</span></a>) returns an isomorphism onto the library group. For each copy, the runtimes in milliseconds are printed. For the groups of order <span class="SimpleMath">p^5</span>, the average runtimes and the ten largest runtimes are printed at the end, as well as the numbers of wrong IDs, of failed isomorphism searches, and of returned maps that are not isomorphisms. A wrong ID, and a map that is not an isomorphism, also cause an error.</p>
+
+<p>The returned record has the components <code class="code">id</code> and <code class="code">iso</code> (lists of triples <code class="code">[time, p, i]</code> for the groups <code class="code">SmallGroup(p^5,i)</code>), <code class="code">wrong</code>, <code class="code">failed</code> and <code class="code">notiso</code> (lists of the groups for which the ID was wrong, the isomorphism search failed, or the returned map was not an isomorphism). The runtimes depend on the machine.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">t := TestSmallGroupID_p5([37, 61, 101], 1, true);;</span>
+------ start p = 37
+ID [37^1,1] copy 1:   id 2 ms,  iso 0 ms
+ID [37^2,1] copy 1:   id 1 ms,  iso 0 ms
+ID [37^2,2] copy 1:   id 1 ms,  iso 0 ms
+...
+ID [101^5,267] copy 1:   id 1 ms,  iso 11 ms
+ID [101^5,268] copy 1:   id 3 ms,  iso 31 ms
+ID [101^5,269] copy 1:   id 1 ms,  iso 1 ms
+
+------ summary
+average time for ID: 51 ms   (607 tests)
+ten largest runtimes for ID:
+   273 ms   for SmallGroup(101^5,257)
+   235 ms   for SmallGroup(101^5,256)
+   ...
+average time for iso: 71 ms   (607 tests)
+ten largest runtimes for iso:
+   3187 ms   for SmallGroup(101^5,125)
+   1595 ms   for SmallGroup(101^5,119)
+   ...
+wrong IDs: 0
+isomorphism search failed: 0
+returned map not an isomorphism: 0
+</pre></div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

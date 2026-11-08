@@ -1,0 +1,12 @@
+  
+  
+  [1XIndex[101X
+  
+  [2XIdSmallGroupFromType_p5[102X 2.3-2 
+  [2XInfoIdp5[102X 2.4-1 
+  [2XIsomorphismSmallGroup[102X, for IsGroup 2.2-1 
+  [2XTestSmallGroupID_p5[102X 2.5-1 
+  [2XTypeFromIdSmallGroup_p5[102X 2.3-1 
+  
+  
+  -------------------------------------------------------

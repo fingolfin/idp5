@@ -1,0 +1,18 @@
+# intermediate files of the manual (gap makedoc.g removes them)
+/doc/*.aux
+/doc/*.bbl
+/doc/*.blg
+/doc/*.brf
+/doc/*.idx
+/doc/*.ilg
+/doc/*.ind
+/doc/*.log
+/doc/*.out
+/doc/*.pnr
+/doc/*.tex
+/doc/*.toc
+/doc/*.xml
+/doc/*_mj.html
+# coverage data of the CI
+/coverage*
+/gaplint*
