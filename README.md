@@ -26,6 +26,9 @@ implementation of this case has been developed with the LLM Claude Opus. Every
 isomorphism returned is verified. While the search can in principle return
 `fail`, this has not been observed in practice.
 
+The final version of this package has been refactored, streamlined, and tested
+with the help of Claude Pro.
+
 ## Installation
 
 Unpack the archive in the `pkg` subdirectory of your GAP installation (or in
