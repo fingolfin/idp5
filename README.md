@@ -12,13 +12,13 @@ The SmallGroups library contains all groups of order $p^5$, but its
 identification function `IdGroup` is not available for order $p^5$ with
 $p \geq 7$. Once the package is loaded, `IdSmallGroup` (equivalently `IdGroup`)
 works for all groups of order $p^n$ with $n \leq 5$ and $p$ prime; for
-$p \in \{2,3,5\}$ the methods of the SmallGroups library are used.
+$p = \{2,3,5\}$ the methods of the SmallGroups library are used.
 
 The package also provides the attribute `IsomorphismSmallGroup`: for a group
 $G$ of order dividing $p^5$ it computes an isomorphism
 $G\to \text{SmallGroup}(\text{IdSmallGroup}(G))$.
 
-N.B.: for groups of order dividing $p^4$ the isomorphism is computed together
+N.B.: For groups of order dividing $p^4$ the isomorphism is computed together
 with the ID, and this algorithm always succeeds. For groups of order $p^5$, the
 construction of the isomorphism reduces to the isomorphism problem for groups
 of order dividing $p^4$ and considers lifts; this is partly randomised and the
@@ -38,8 +38,8 @@ any other GAP package directory), and load the package with
 gap> LoadPackage("idp5");
 ```
 
-The package needs GAP 4.14 or later and the SmallGrp package; it suggests
-the AutPGrp package. No compilation is needed.
+The package needs GAP 4.14 or later and the SmallGrp package;
+the AutPGrp package is suggested. No compilation is needed.
 
 ## Example
 
