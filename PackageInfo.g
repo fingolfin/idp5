@@ -24,16 +24,6 @@ Persons := [
     Institution := "Monash University",
   ),
   rec(
-    FirstNames := "Bettina",
-    LastName := "Eick",
-    WWWHome := "http://www.iaa.tu-bs.de/beick",
-    Email := "beick@tu-bs.de",
-    IsAuthor := true,
-    IsMaintainer := false,
-    Place := "Braunschweig, Germany",
-    Institution := "TU Braunschweig",
-  ),
-  rec(
     FirstNames := "Henrik",
     LastName := "Schanze",
     WWWHome := "https://www.iaa.tu-bs.de/henschan",

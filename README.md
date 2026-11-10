@@ -12,13 +12,13 @@ The SmallGroups library contains all groups of order $p^5$, but its
 identification function `IdGroup` is not available for order $p^5$ with
 $p \geq 7$. Once the package is loaded, `IdSmallGroup` (equivalently `IdGroup`)
 works for all groups of order $p^n$ with $n \leq 5$ and $p$ prime; for
-$p = \{2,3,5\}$ the methods of the SmallGroups library are used.
+$p = 2,3,5$ the methods of the SmallGroups library are used.
 
 The package also provides the attribute `IsomorphismSmallGroup`: for a group
 $G$ of order dividing $p^5$ it computes an isomorphism
 $G\to \text{SmallGroup}(\text{IdSmallGroup}(G))$.
 
-N.B.: For groups of order dividing $p^4$ the isomorphism is computed together
+N.B.: for groups of order dividing $p^4$ the isomorphism is computed together
 with the ID, and this algorithm always succeeds. For groups of order $p^5$, the
 construction of the isomorphism reduces to the isomorphism problem for groups
 of order dividing $p^4$ and considers lifts; this is partly randomised and the
@@ -38,8 +38,8 @@ any other GAP package directory), and load the package with
 gap> LoadPackage("idp5");
 ```
 
-The package needs GAP 4.14 or later and the SmallGrp package;
-the AutPGrp package is suggested. No compilation is needed.
+The package needs GAP 4.14 or later and the SmallGrp package; it suggests
+the AutPGrp package. No compilation is needed.
 
 ## Example
 
@@ -90,13 +90,13 @@ gap> TestPackage("idp5");
 ```
 
 runs the test suite in `tst/` (about a minute): it identifies random copies
-of all groups of order $p^n$, $n \leq 5$, for $p \in \{2,3,5,7,11,13,17\}$,
+of all groups of order $p^n$, $n \leq 5$, for $p = 2,3,5,7,11,13,17$,
 constructs the isomorphisms onto the library groups, and runs the examples of
 the manual.
 
 The test function `TestSmallGroupID_p5` takes as input a list `lps` of primes,
 an integer `nr`, and a Boolean `testIso`; it will then run over `nr` copies
-of the groups of order $p^i$ where $p$ lies in `lps` and $i\in\{1,2,3,4,5\}$
+of the groups of order $p^i$ where $p$ lies in `lps` and $i = 1,2,3,4,5$
 and tests that `IdSmallGroup` is computed correctly. If the Boolean `testIso`
 is true, then it also tests the isomorphism construction. It outputs
 statistics of the runtimes.
@@ -164,6 +164,6 @@ doc/              the manual (PDF, HTML, text); doc/idp5.bib holds the reference
 
 ## Authors and license
 
-Heiko Dietrich (Monash University), Bettina Eick and Henrik Schanze (TU
+Heiko Dietrich (Monash University) and Henrik Schanze (TU
 Braunschweig). The package is distributed under the GNU General Public
 License, version 2 or later; see the file `LICENSE`.
