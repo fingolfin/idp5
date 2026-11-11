@@ -16,3 +16,11 @@
 # coverage data of the CI
 /coverage*
 /gaplint*
+# the manual itself (built by gap makedoc.g)
+/doc/chap*.html
+/doc/chap*.txt
+/doc/*.css
+/doc/*.js
+/doc/manual.lab
+/doc/manual.pdf
+/doc/manual.six
