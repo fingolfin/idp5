@@ -35,8 +35,6 @@ Persons := [
   ),
 ],
 
-# TODO: create the GitHub repository (and its GitHub Pages site) before
-# submitting the package; GAP's package distribution reads PackageInfoURL.
 SourceRepository := rec(
     Type := "git",
     URL := "https://github.com/heikodietrich/idp5",
