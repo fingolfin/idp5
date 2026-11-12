@@ -43,11 +43,11 @@ SourceRepository := rec(
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
 PackageWWWHome  := "https://heikodietrich.github.io/idp5/",
-#PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-PackageInfoURL  := Concatenation( ~.SourceRepository.URL, "/raw/refs/heads/main/PackageInfo.g" ),
-README_URL      := Concatenation( ~.SourceRepository.URL, "/raw/refs/heads/main/README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
+README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL      := Concatenation( ~.SourceRepository.URL,
-                                 "/releases/"),#download/v", ~.Version,"/idp5-", ~.Version ),
+                                 "/releases/download/v", ~.Version,
+                                 "/idp5-", ~.Version ),
 
 ArchiveFormats := ".tar.gz",
 
