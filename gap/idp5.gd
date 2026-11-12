@@ -28,9 +28,10 @@
 #!   constructs an isomorphism from a group <M>G</M> of order dividing
 #!   <M>p^5</M> onto <C>SmallGroup(IdSmallGroup(G))</C>.
 #!   <P/>
-#!   The function <Ref Func="IdGroupsAvailable" BookName="smallgrp"/> is
-#!   not changed by the package: for example, <C>IdGroupsAvailable(7^5)</C>
-#!   still returns <K>false</K>.
+#!   The package adds its identification to the SmallGroups library, so
+#!   after loading <Package>Idp5</Package>,
+#!   <Ref Func="IdGroupsAvailable" BookName="smallgrp"/> returns <K>true</K>
+#!   for the orders <M>p^5</M>, <M>p \geq 7</M>.
 #!   <P/>
 #!   The identification of a group of order dividing <M>p^4</M> also yields an
 #!   isomorphism onto the library group.  The
@@ -81,32 +82,31 @@
 
 #! @Section Identification
 #! @SectionLabel IdSmallGroup
-#!   The package installs a method for the attribute
+#!   The package registers the identification of the groups of order
+#!   <M>p^5</M>, <M>p &gt; 5</M> prime, with the SmallGroups library.  For
+#!   such a group <M>G</M>, the attribute
 #!   <Ref Attr="IdSmallGroup" BookName="smallgrp"/> (a synonym of
-#!   <Ref Attr="IdGroup" BookName="smallgrp"/>) of the SmallGroups library.
-#!   For a group <M>G</M> of order <M>p^n</M> with <M>p &gt; 5</M> prime and
-#!   <M>n \leq 5</M>, this method returns the pair <C>[p^n,i]</C> such that
-#!   <M>G</M> is isomorphic to <C>SmallGroup(p^n,i)</C>.  For all other groups,
-#!   in particular for the groups of order <M>2^n</M>, <M>3^n</M> and
-#!   <M>5^n</M>, the methods of the SmallGroups library are used.
+#!   <Ref Attr="IdGroup" BookName="smallgrp"/>) then returns the pair
+#!   <C>[p^5,i]</C> such that <M>G</M> is isomorphic to
+#!   <C>SmallGroup(p^5,i)</C>, and
+#!   <Ref Func="IdGroupsAvailable" BookName="smallgrp"/> returns <K>true</K>
+#!   for <M>p^5</M>.  All other groups, in particular those of order
+#!   <M>p^n</M> with <M>n \leq 4</M> and those of order <M>2^5</M>,
+#!   <M>3^5</M> and <M>5^5</M>, are identified by the SmallGroups library
+#!   itself.
 #!   <P/>
 #!   The input group can be given in any representation in which &GAP; can
 #!   compute with it, for example as a pc group, a permutation group, or a
-#!   matrix group.  If an isomorphism onto the library group is found during
-#!   the identification, which is the case for the groups of order dividing
-#!   <M>p^4</M>, then it is stored as the value of
-#!   <Ref Attr="IsomorphismSmallGroup" Label="for IsGroup"/>.
+#!   matrix group.
 #! @BeginExampleSession
 #! gap> G := Group(GeneratorsOfGroup(SmallGroup(11^5, 40)));;
 #! gap> IdGroup(G);
 #! [ 161051, 40 ]
-#! gap> G := Image(RegularActionHomomorphism(SmallGroup(13^4, 9)));;
+#! gap> G := Image(RegularActionHomomorphism(SmallGroup(7^5, 9)));;
 #! gap> IdSmallGroup(G);
-#! [ 28561, 9 ]
-#! gap> HasIsomorphismSmallGroup(G);
+#! [ 16807, 9 ]
+#! gap> IdGroupsAvailable(17^5);
 #! true
-#! gap> IdGroupsAvailable(17^5);  # the SmallGroups library has no ID function
-#! false
 #! gap> NumberSmallGroups(17^5);
 #! 101
 #! gap> ForAll([1..101], i -> IdGroup(Group(GeneratorsOfGroup(SmallGroup(17^5,i))))
@@ -127,7 +127,7 @@
 #!   <List>
 #!   <Item>
 #!     If <M>p &gt; 5</M> and <M>n \leq 4</M>, then the isomorphism is computed
-#!     together with <C>IdSmallGroup(<A>G</A>)</C>.
+#!     together with the ID by the identification algorithm of the package.
 #!   </Item>
 #!   <Item>
 #!     If <M>p \in \{2,3\}</M>, or if <M>p=5</M> and <M>n \leq 4</M>, then

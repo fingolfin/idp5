@@ -140,12 +140,8 @@ gap> IdSmallGroup(DihedralGroup(64));
 # Stored attributes
 #
 gap> G := GensCopy(SmallGroup(11^4, 8));;
-gap> HasIsomorphismSmallGroup(G);
-false
 gap> IdSmallGroup(G);
 [ 14641, 8 ]
-gap> HasIsomorphismSmallGroup(G);
-true
 gap> IsIsoOntoLibraryGroup(G, IsomorphismSmallGroup(G), [11^4, 8]);
 true
 gap> G := GensCopy(SmallGroup(11^5, 8));;
@@ -155,8 +151,19 @@ gap> iso := IsomorphismSmallGroup(G);; HasIsomorphismSmallGroup(G);
 true
 gap> IsIdenticalObj(iso, IsomorphismSmallGroup(G));
 true
-gap> IdGroupsAvailable(7^5);
-false
+
+#
+# The SmallGrp layer: Idp5 identifies the groups of order p^5, p > 5, and
+# leaves all other orders to SmallGrp
+#
+gap> IdGroupsAvailable(11^5);
+true
+gap> IdGroup(GensCopy(SmallGroup(11^5, 40)));
+[ 161051, 40 ]
+gap> List([2, 3, 5, 7, 13, 101], p -> IdGroupsAvailable(p^5));
+[ true, true, true, true, true, true ]
+gap> List([2^5, 3^5, 5^5, 7^4, 11^3, 11^6, 6^5, 1], p5id_IdAvailable);
+[ fail, fail, fail, fail, fail, fail, fail, fail ]
 
 #
 # Types of the groups of order p^5

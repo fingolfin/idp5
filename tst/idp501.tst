@@ -10,7 +10,7 @@
 #
 gap> START_TEST("idp501.tst");
 
-# doc/_Chapter_intro.xml:52-64
+# gap/idp5.gd:54-66
 gap> R := SmallGroup(7^5, 65);;
 gap> R := Image(IsomorphismPermGroup(R));;
 gap> repeat gens := List([1..8], x -> Random(R)); until Group(gens) = R;
@@ -23,7 +23,7 @@ true
 gap> IdSmallGroup(Range(iso));
 [ 16807, 65 ]
 
-# doc/_Chapter_intro.xml:72-78
+# gap/idp5.gd:72-78
 gap> H := SmallGroup(7^5, 65);;
 gap> isoRtoH := iso * GroupHomomorphismByImages(Range(iso), H,
 >                                   Pcgs(Range(iso)), Pcgs(H));;

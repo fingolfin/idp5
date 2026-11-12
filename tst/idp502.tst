@@ -10,24 +10,22 @@
 #
 gap> START_TEST("idp502.tst");
 
-# doc/_Chapter_Functions.xml:25-41
+# gap/idp5.gd:101-115
 gap> G := Group(GeneratorsOfGroup(SmallGroup(11^5, 40)));;
 gap> IdGroup(G);
 [ 161051, 40 ]
-gap> G := Image(RegularActionHomomorphism(SmallGroup(13^4, 9)));;
+gap> G := Image(RegularActionHomomorphism(SmallGroup(7^5, 9)));;
 gap> IdSmallGroup(G);
-[ 28561, 9 ]
-gap> HasIsomorphismSmallGroup(G);
+[ 16807, 9 ]
+gap> IdGroupsAvailable(17^5);
 true
-gap> IdGroupsAvailable(17^5);  # the SmallGroups library has no ID function
-false
 gap> NumberSmallGroups(17^5);
 101
 gap> ForAll([1..101], i -> IdGroup(Group(GeneratorsOfGroup(SmallGroup(17^5,i))))
 >                          = [17^5, i]);
 true
 
-# doc/_Chapter_Functions.xml:88-99
+# gap/idp5.gd:155-166
 gap> G := Image(IsomorphismPermGroup(SmallGroup(7^5, 30)));;
 gap> iso := IsomorphismSmallGroup(G);;
 gap> IsBijective(iso) and Source(iso) = G;
@@ -39,7 +37,7 @@ gap> iso := IsomorphismSmallGroup(G);;
 gap> IdSmallGroup(Range(iso)) = IdSmallGroup(G);
 true
 
-# doc/_Chapter_Functions.xml:146-160
+# gap/idp5.gd:201-215
 gap> TypeFromIdSmallGroup_p5(7, 34);
 [ 29, 2 ]
 gap> IdSmallGroupFromType_p5(7, [29, 2]);
