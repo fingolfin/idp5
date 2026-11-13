@@ -2,7 +2,8 @@
 ##
 ##  methods.gi                                              Idp5 package
 ##
-##  The methods for IdSmallGroup and IsomorphismSmallGroup.
+##  The SmallGrp layer for IdSmallGroup, and the method for
+##  IsomorphismSmallGroup.
 ##
 #############################################################################
 
@@ -85,22 +86,61 @@ end );
 
 ####################################################################################
 ##
-## method for groups of order p^i with i<=5 and p>5
+## SmallGrp layer for the identification of the groups of order p^5, p > 5.
+## SmallGrp identifies the groups of order p^n, n <= 4, for every p, and those
+## of order 2^5, 3^5, 5^5; its layers are consulted first, so claiming more
+## orders here would have no effect.
 ##
-InstallMethod( IdSmallGroup,
-    "for groups of order p^i with i <= 5 and p > 5, via p5id_IdSmallGroup",
-    [ IsGroup ],
-    SUM_FLAGS,   # rank this above the SmallGrp library methods
-function( G )
-    local n, f;
-    if not IsFinite( G ) then
-        TryNextMethod();
-    fi;
-    n := Size( G );
-    if n = 1 then SetIdGroup(G,[1,1]); return [1,1]; fi;
-    f := Collected(FactorsInt(n));
-    if not Size(f)=1 or not f[1][2] <= 5 or not f[1][1]>5 then
-        TryNextMethod();
-    fi;
-    return p5id_IdSmallGroup( G );
+BindGlobal( "p5id_IdAvailable", function( size )
+local p;
+   p := RootInt( size, 5 );
+   if p^5 <> size or p <= 5 or not IsPrimeInt( p ) then return fail; fi;
+   return rec( p := p );
 end );
+
+# an isomorphism found on the way is stored as IsomorphismSmallGroup of G;
+# SmallGrp hands over the user's group if it is a pc or a permutation group
+# of small degree, otherwise an isomorphic pc group
+BindGlobal( "p5id_IdGroupInLayer", function( G, idrec )
+   return p5id_IdSmallGroup( G )[2];
+end );
+
+if IsBound( SmallGroupsAddLayer ) then
+
+# SmallGrp 1.7 and up
+SmallGroupsAddLayer( rec(
+    name := "Idp5",
+    available := ReturnFail,  # the groups themselves come from SmallGrp
+    group := ReturnFail,
+    idAvailable := p5id_IdAvailable,
+    id := p5id_IdGroupInLayer ) );
+
+else
+
+# SmallGrp before 1.7: claim a library slot and a function slot by hand,
+# after those of the packages loaded so far
+BindGlobal( "p5id_LAYER",
+    Maximum( Length( SMALL_AVAILABLE_FUNCS ), Length( ID_AVAILABLE_FUNCS ) ) + 1 );
+BindGlobal( "p5id_POS", Maximum( List( [
+        SMALL_GROUP_FUNCS,
+        SMALL_GROUPS_INFORMATION,
+        NUMBER_SMALL_GROUPS_FUNCS,
+        ID_GROUP_FUNCS,
+        SELECT_SMALL_GROUPS_FUNCS,
+    ], Length ) ) + 1 );
+
+# binding the slot keeps the next package from taking it
+SMALL_AVAILABLE_FUNCS[ p5id_LAYER ] := ReturnFail;
+
+ID_AVAILABLE_FUNCS[ p5id_LAYER ] := function( size )
+local r;
+   r := p5id_IdAvailable( size );
+   if r = fail then return fail; fi;
+   r.lib := p5id_LAYER;
+   r.func := p5id_POS;
+   return r;
+end;
+
+ID_GROUP_FUNCS[ p5id_POS ] := p5id_IdGroupInLayer;
+
+fi;

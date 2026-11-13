@@ -10,9 +10,12 @@ by Heiko Dietrich, Bettina Eick, and Henrik Schanze.
 
 The SmallGroups library contains all groups of order $p^5$, but its
 identification function `IdGroup` is not available for order $p^5$ with
-$p \geq 7$. Once the package is loaded, `IdSmallGroup` (equivalently `IdGroup`)
-works for all groups of order $p^n$ with $n \leq 5$ and $p$ prime; for
-$p = 2,3,5$ the methods of the SmallGroups library are used.
+$p \geq 7$. The package adds this identification to the SmallGroups library,
+so once it is loaded, `IdSmallGroup` (equivalently `IdGroup`) works and
+`IdGroupsAvailable` returns `true` for all groups of order $p^n$ with
+$n \leq 5$ and $p$ prime. The groups of order $p^n$ with $n \leq 4$ and those
+of order $2^5$, $3^5$, $5^5$ are still identified by the SmallGroups library
+itself.
 
 The package also provides the attribute `IsomorphismSmallGroup`: for a group
 $G$ of order dividing $p^5$ it computes an isomorphism
@@ -69,8 +72,8 @@ true
 
 ## Public functions
 
-* `IdSmallGroup(G)` / `IdGroup(G)`: a new method for groups of order $p^n$
-  with $p > 5$ and $n \leq 5$.
+* `IdSmallGroup(G)` / `IdGroup(G)`: the identification of the groups of
+  order $p^5$ with $p > 5$, registered with the SmallGroups library.
 * `IsomorphismSmallGroup(G)`: an isomorphism from $G$ onto
   `SmallGroup(IdSmallGroup(G))`, for groups of order $p^n$ with $n \leq 5$
   and any prime $p$; `fail` if the randomised search fails.
@@ -153,7 +156,7 @@ gap/types.gi      TypeFromIdSmallGroup_p5, IdSmallGroupFromType_p5
 gap/isop4.gi      identification and isomorphisms for order dividing p^4
 gap/idp5.gi       identification for order p^5
 gap/isop5.gi      isomorphisms for order p^5 (randomised lifting)
-gap/methods.gi    the methods for IdSmallGroup and IsomorphismSmallGroup
+gap/methods.gi    SmallGrp layer for IdSmallGroup, IsomorphismSmallGroup
 gap/testing.gi    TestSmallGroupID_p5
 tst/testall.g     runs the test suite
 tst/idp5.tst      the tests
