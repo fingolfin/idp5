@@ -18,6 +18,7 @@
 /gaplint*
 # the manual itself (built by gap makedoc.g)
 /doc/chap*.html
+/doc/chooser.html
 /doc/chap*.txt
 /doc/*.css
 /doc/*.js
